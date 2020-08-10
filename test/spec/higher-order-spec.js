@@ -1,103 +1,104 @@
-describe('filters1', ()=>{
-  describe('evenNumbers', ()=>{
-    it('should exist', ()=>{
-      expect(evenNumbers).toBeDefined();
+describe('filters1', () => {
+    describe('evenNumbers', () => {
+        it('should exist', () => {
+            expect(evenNumbers).toBeDefined();
+        })
+        it('should be an array', () => {
+            expect(evenNumbers.length).toBeDefined();
+        })
+        it('should have 8 elements', () => {
+            expect(evenNumbers.length).toBe(8);
+        })
+        it('should have the correct elements', () => {
+            expect(evenNumbers.sort().toString()).toBe([6, 2, 6, 8, 4, 2, 8, 4].sort().toString());
+        })
     })
-    it('should be an array', ()=>{
-      expect(evenNumbers.length).toBeDefined();
-    })
-    it('should have 8 elements', ()=>{
-      expect(evenNumbers.length).toBe(8);
-    })
-    it('should have the correct elements', ()=>{
-      expect(evenNumbers.sort().toString()).toBe([6, 2, 6, 8, 4, 2, 8, 4].sort().toString());
-    })
-  })
 })
 
-describe('map1', ()=>{
-  describe('postTaxPrices', ()=>{
-    it('should exist', ()=>{
-      expect(postTaxPrices).toBeDefined();
+describe('map1', () => {
+    describe('postTaxPrices', () => {
+        it('should exist', () => {
+            expect(postTaxPrices).toBeDefined();
+        })
+        it('should be an array', () => {
+            expect(postTaxPrices.length).toBeDefined();
+        })
+        it('should have 9 elements', () => {
+            expect(postTaxPrices.length).toBe(9);
+        })
+        it('should have the correct prices', () => {
+            let incorrect = [16.05, 24.610000000000003, 83.46000000000001, 36.38,
+                12.84, 92.02000000000001, 12.84, 84.53, 34.24
+            ].reduce(
+                (p, e, i) => p || (Math.abs(e - postTaxPrices[i]) > .02), false)
+            expect(incorrect).toBe(false);
+        })
     })
-    it('should be an array', ()=>{
-      expect(postTaxPrices.length).toBeDefined();
-    })
-    it('should have 9 elements', ()=>{
-      expect(postTaxPrices.length).toBe(9);
-    })
-    it('should have the correct prices', ()=>{
-      let incorrect = [16.05, 24.610000000000003, 83.46000000000001, 36.38,
-        12.84, 92.02000000000001, 12.84, 84.53, 34.24].reduce(
-        (p, e, i)=>p||(Math.abs(e-postTaxPrices[i])>.02), false)
-      expect(incorrect).toBe(false);
-    })
-  })
 })
 
-describe('reduce1', ()=>{
-  describe('totalPopulation', ()=>{
-    it('should exist', ()=>{
-      expect(totalPopulation).toBeDefined();
+describe('reduce1', () => {
+    describe('totalPopulation', () => {
+        it('should exist', () => {
+            expect(totalPopulation).toBeDefined();
+        })
+        it('should have the correct total', () => {
+            expect(totalPopulation).toBe(16763615);
+        })
     })
-    it('should have the correct total', ()=>{
-      expect(totalPopulation).toBe(16763615);
-    })
-  })
 })
 
-describe('filters2', ()=>{
-  describe('myStrongest', ()=>{
-    it('should exist', ()=>{
-      expect(myStrongest).toBeDefined();
+describe('filters2', () => {
+    describe('myStrongest', () => {
+        it('should exist', () => {
+            expect(myStrongest).toBeDefined();
+        })
+        it('should be an array', () => {
+            expect(myStrongest.length).toBeDefined();
+        })
+        it('should have 9 elements', () => {
+            expect(myStrongest.length).toBe(9);
+        })
+        it('should have the correct monsters', () => {
+            expect(myStrongest.map(e => e.monster).sort().toString())
+                .toEqual(monstersInYourPocket.filter(e => e.CP > 200).map(e => e.monster).sort().toString());
+            expect(myStrongest.map(e => e.CP).sort().toString())
+                .toEqual(monstersInYourPocket.filter(e => e.CP > 200).map(e => e.CP).sort().toString());
+        })
     })
-    it('should be an array', ()=>{
-      expect(myStrongest.length).toBeDefined();
-    })
-    it('should have 9 elements', ()=>{
-      expect(myStrongest.length).toBe(9);
-    })
-    it('should have the correct monsters', ()=>{
-      expect(myStrongest.map(e=>e.monster).sort().toString())
-        .toEqual(monstersInYourPocket.filter(e=>e.CP>200).map(e=>e.monster).sort().toString());
-      expect(myStrongest.map(e=>e.CP).sort().toString())
-        .toEqual(monstersInYourPocket.filter(e=>e.CP>200).map(e=>e.CP).sort().toString());
-    })
-  })
 })
 
-describe('map2', ()=>{
-  describe('orderTotals', ()=>{
-    it('should exist', ()=>{
-      expect(orderTotals).toBeDefined();
+describe('map2', () => {
+    describe('orderTotals', () => {
+        it('should exist', () => {
+            expect(orderTotals).toBeDefined();
+        })
+        it('should be an array', () => {
+            expect(orderTotals.length).toBeDefined();
+        })
+        it('should have 10 elements', () => {
+            expect(orderTotals.length).toBe(10);
+        })
+        it('should have the correct prices', () => {
+            for (let i = 0; i < orders.length; i++) {
+                const answer = orders[i].price * (1 + orders[i].tax);
+                expect(orderTotals[i]).toBeCloseTo(answer, 2, `Expected orderTotals index ${i} to be ${answer}, got ${orderTotals[i]}`)
+                if (orderTotals[i] != answer) {
+                    break;
+                }
+            }
+        })
     })
-    it('should be an array', ()=>{
-      expect(orderTotals.length).toBeDefined();
-    })
-    it('should have 10 elements', ()=>{
-      expect(orderTotals.length).toBe(10);
-    })
-    it('should have the correct prices', ()=>{
-      for (let i = 0; i < orders.length; i++) {
-        const answer = orders[i].price * (1 + orders[i].tax);
-        expect(orderTotals[i]).toBeCloseTo(answer, 2, `Expected orderTotals index ${i} to be ${answer}, got ${orderTotals[i]}`)
-        if (orderTotals[i] != answer) {
-          break;
-        }
-      }
-    })
-  })
 });
 
-describe('reduce2', ()=>{
-  describe('bobsTotal', ()=>{
-    it('should exist', ()=>{
-      expect(bobsTotal).toBeDefined();
+describe('reduce2', () => {
+    describe('bobsTotal', () => {
+        it('should exist', () => {
+            expect(bobsTotal).toBeDefined();
+        })
+        it('should have the correct total', () => {
+            expect(bobsTotal).toBe(891);
+        })
     })
-    it('should have the correct total', ()=>{
-      expect(bobsTotal).toBe(891);
-    })
-  })
 })
 
 // describe('fns-and-scope', function () {

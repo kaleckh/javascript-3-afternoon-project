@@ -1,3 +1,5 @@
+console.log("kale")
+
 /*
   Once you complete a problem, refresh ./destructuring.html in your browser and check to see if the problem's test(s) are passing.
   Passed tests will be indicated by a green circle.
@@ -10,19 +12,19 @@
 
 // Do not edit the code below.
 var carDetails = {
-  color: 'red',
-  make: 'toyota',
-  model: 'tacoma',
-  year: 1994
-}
-// Do not edit the code above.
+        color: 'red',
+        make: 'toyota',
+        model: 'tacoma',
+        year: 1994
+    }
+    // Do not edit the code above.
 
 /*
   Use object destructuring to save the property values from the object carDetails into new variables. 
 */
 
-//Code Here
-
+let { color, make, model, year } = carDetails
+console.log("color", color)
 
 
 ////////// PROBLEM 2 //////////
@@ -33,12 +35,12 @@ var carDetails = {
   The property names are firstName, lastName, and title.
 */
 
-function greeting( obj ) {
-  //Code Here
-  
-  // Do not edit the code below.
-  return 'Hello, ' + title + ' ' + firstName + ' ' + lastName + '!';
-  // Do not edit the code above.
+function greeting({ title, firstName, lastName }) {
+
+
+    // Do not edit the code below.
+    return 'Hello, ' + title + ' ' + firstName + ' ' + lastName + '!';
+    // Do not edit the code above.
 }
 
 
@@ -53,8 +55,11 @@ function greeting( obj ) {
   Sum up the values and return the total number.
 */
 
-//Code Here
+function totalPopulation(obj) {
+    let { utah, california, texas, arizona } = obj
+    return utah + california + texas + arizona
 
+}
 
 
 ////////// PROBLEM 4 //////////
@@ -96,7 +101,3 @@ function greeting( obj ) {
   The object properties will be named a, b, and c and their values will be arrays of numbers.
   Find the longest array and return that array.
 */
-
-//Code Here
-
-
