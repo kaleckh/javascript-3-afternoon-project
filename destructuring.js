@@ -72,7 +72,10 @@ function totalPopulation(obj) {
   Push these new variables to an array and return the array. 
 */
 
-//Code Here
+function ingredients({ carb, fat, protein }) {
+    return [carb, fat, protein]
+
+}
 
 
 
@@ -90,7 +93,11 @@ function totalPopulation(obj) {
   Find the smallest number of the three and return that number.
 */
 
-//Code Here
+function largeNumbers({ first, second, third }) {
+    var firstComparison = first < second ? first : second
+    return firstComparison < third ? firstComparison : third
+
+}
 
 
 
@@ -101,3 +108,8 @@ function totalPopulation(obj) {
   The object properties will be named a, b, and c and their values will be arrays of numbers.
   Find the longest array and return that array.
 */
+
+function numberGroups({ a, b, c }) {
+    var firstComparison = a.length > b.length ? a : b
+    return firstComparison.length > c.length ? firstComparison : c
+}
